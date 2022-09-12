@@ -141,7 +141,7 @@ clean: ## clean up generated files
 		test/harness/go/main/go-harness \
 		test/harness/go/harness.pb.go
 	rm -rf \
-		test/harness/gen
+		test/gen 
 	rm -rf \
 		python/dist \
 		python/*.egg-info
