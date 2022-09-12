@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package package.v1;
+option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/go;cases";
+import "validate.proto";
+
+message BoolNone {
+  bool val = 1;
+}
+message BoolConstTrue {
+  bool val = 1 [(validate.rules).bool.const = true];
+}
+message BoolConstFalse {
+  bool val = 1 [(validate.rules).bool.const = false];
+}

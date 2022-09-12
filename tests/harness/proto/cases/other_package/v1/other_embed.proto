@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package other_package.v1;
+option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/other_package/go;other_package";
+
+import "validate.proto";
+
+// Validate message embedding across packages.
+message Embed {
+  message DoubleEmbed {
+    enum DoubleEnumerated {
+      DOUBLE_ENUMERATED_UNSPECIFIED = 0;
+      DOUBLE_ENUMERATED_VALUE = 1;
+    }
+  }
+
+  int64 val = 1 [(validate.rules).int64.gt = 0];
+
+  enum Enumerated {
+    ENUMERATED_UNSPECIFIED = 0;
+    ENUMERATED_VALUE = 1;
+  }
+}
