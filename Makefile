@@ -2,6 +2,8 @@ empty :=
 space := $(empty) $(empty)
 PACKAGE := github.com/envoyproxy/protoc-gen-validate
 
+BUF := $(if $(shell which buf),buf,$(error "No buf in PATH, visit https://docs.buf.build/installation to install"))
+
 # protoc-gen-go parameters for properly generating the import path for PGV
 VALIDATE_IMPORT := Mvalidate/validate.proto=${PACKAGE}/validate
 GO_IMPORT_SPACES := ${VALIDATE_IMPORT},\
@@ -25,11 +27,11 @@ build: validate/validate.pb.go ## generates the PGV binary and installs it into 
 
 .PHONY: bazel
 bazel: ## generate the PGV plugin with Bazel
-	bazel build //tests/...
+	bazel build //test/...
 
 .PHONY: build_generation_tests
 build_generation_tests:
-	bazel build //tests/generation/...
+	bazel build //test/generation/...
 
 .PHONY: gazelle
 gazelle: ## runs gazelle against the codebase to generate Bazel BUILD files
@@ -56,49 +58,46 @@ bin/protoc-gen-go:
 	GOBIN=$(shell pwd)/bin go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
 
 bin/harness:
-	cd tests && go build -o ../bin/harness ./harness/executor
+	cd test && go build -o ../bin/harness ./harness/executor
 
 .PHONY: harness
-harness: testcases tests/harness/go/harness.pb.go tests/harness/go/main/go-harness tests/harness/cc/cc-harness bin/harness ## runs the test harness, validating a series of test cases in all supported languages
+harness: testcases test/harness/go/harness.pb.go test/harness/go/main/go-harness test/harness/cc/cc-harness bin/harness ## runs the test harness, validating a series of test cases in all supported languages
 	./bin/harness -go -cc
 
 .PHONY: bazel-tests
 bazel-tests: ## runs all tests with Bazel
-	bazel test //tests/... --test_output=errors
+	bazel test //test/... --test_output=errors
 
 .PHONY: example-workspace
 example-workspace: ## run all tests in the example workspace
 	cd example-workspace && bazel test //... --test_output=errors
 
-.PHONY: buf
-buf: bin/protoc-gen-go ## generate the test harness case protos
-	rm -r tests/harness/gen
-	buf generate --template=buf.gen.yaml
+.PHONY: testcases
+testcases: bin/protoc-gen-go ## generate the test harness case protos
+	$(BUF) generate test/cases --template=buf.gen.test.yaml
+	
 
 validate/validate.pb.go: bin/protoc-gen-go validate/validate.proto
-	protoc -I . \
-		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--go_opt=paths=source_relative \
-		--go_out="${GO_IMPORT}:." validate/validate.proto
+	$(BUF) generate validate --template=buf.gen.validate.yaml --output=validate
 
-tests/harness/go/harness.pb.go: bin/protoc-gen-go tests/harness/harness.proto
+test/harness/go/harness.pb.go: bin/protoc-gen-go test/harness/harness.proto
 	# generates the test harness protos
-	cd tests/harness && protoc -I . \
+	cd test/harness && protoc -I . \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--go_out="module=${PACKAGE}/tests/harness/go,${GO_IMPORT}:./go" harness.proto
+		--go_out="module=${PACKAGE}/test/harness/go,${GO_IMPORT}:./go" harness.proto
 
-tests/harness/go/main/go-harness:
+test/harness/go/main/go-harness:
 	# generates the go-specific test harness
-	cd tests && go build -o ./harness/go/main/go-harness ./harness/go/main
+	cd test && go build -o ./harness/go/main/go-harness ./harness/go/main
 
-tests/harness/cc/cc-harness: tests/harness/cc/harness.cc
+test/harness/cc/cc-harness: test/harness/cc/harness.cc
 	# generates the C++-specific test harness
 	# use bazel which knows how to pull in the C++ common proto libraries
-	bazel build //tests/harness/cc:cc-harness
-	cp bazel-bin/tests/harness/cc/cc-harness $@
+	bazel build //test/harness/cc:cc-harness
+	cp bazel-bin/test/harness/cc/cc-harness $@
 	chmod 0755 $@
 
-tests/harness/java/java-harness:
+test/harness/java/java-harness:
 	# generates the Java-specific test harness
 	mvn -q -f java/pom.xml clean package -DskipTests
 
@@ -138,13 +137,11 @@ clean: ## clean up generated files
 	rm -f \
 		bin/protoc-gen-go \
 		bin/harness \
-		tests/harness/cc/cc-harness \
-		tests/harness/go/main/go-harness \
-		tests/harness/go/harness.pb.go
+		test/harness/cc/cc-harness \
+		test/harness/go/main/go-harness \
+		test/harness/go/harness.pb.go
 	rm -rf \
-		tests/harness/proto/cases/package/v1/go \
-		tests/harness/proto/cases/other_package/v1/go \
-		tests/harness/proto/cases/yet_another_package/v1/go
+		test/harness/gen
 	rm -rf \
 		python/dist \
 		python/*.egg-info

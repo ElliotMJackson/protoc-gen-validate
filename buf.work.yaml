@@ -1,4 +1,4 @@
 version: v1
 directories:
-  - tests/harness/proto/cases
+  - test/cases
   - validate

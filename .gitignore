@@ -12,15 +12,15 @@ bazel-*
 __pycache__/
 *.py[cod]
 
-/tests/harness/gen/**/*
-/tests/harness/go/harness.pb.go
-/tests/harness/go/main/go-harness
-/tests/harness/go/main/go-harness.exe
-/tests/harness/gogo/harness.pb.go
-/tests/harness/gogo/main/go-harness
-/tests/harness/gogo/main/go-harness.exe
-/tests/harness/cc/cc-harness
-/tests/harness/cc/cc-harness.exe
+/test/gen/**/*
+/test/harness/go/harness.pb.go
+/test/harness/go/main/go-harness
+/test/harness/go/main/go-harness.exe
+/test/harness/gogo/harness.pb.go
+/test/harness/gogo/main/go-harness
+/test/harness/gogo/main/go-harness.exe
+/test/harness/cc/cc-harness
+/test/harness/cc/cc-harness.exe
 
 /validate/__pycache__
 

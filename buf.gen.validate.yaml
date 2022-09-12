@@ -1,0 +1,15 @@
+version: v1
+plugins:
+  - name: go
+    out: .
+    opt:
+      - paths=source_relative
+  - name: cpp
+    out: .
+  - name: python
+    out: .
+  - name: validate
+    out: .
+    opt:
+      - lang=go
+      - paths=source_relative

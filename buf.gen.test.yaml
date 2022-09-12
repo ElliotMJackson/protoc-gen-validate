@@ -1,0 +1,15 @@
+version: v1
+plugins:
+  - name: go
+    out: test/gen
+    opt:
+      - paths=source_relative
+  - name: cpp
+    out: test/gen
+  - name: python
+    out: test/gen
+  - name: validate
+    out: test/gen
+    opt:
+      - lang=go
+      - paths=source_relative
