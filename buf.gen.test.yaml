@@ -8,6 +8,8 @@ plugins:
     out: test/gen
   - name: python
     out: test/gen
+  - name: java
+    out: test/gen
   - name: validate
     out: test/gen
     opt:
