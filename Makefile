@@ -1,7 +1,7 @@
 empty :=
 space := $(empty) $(empty)
 PACKAGE := github.com/envoyproxy/protoc-gen-validate
-GOPATH=$(shell go env GOPATH)
+GOPATH:=$(shell go env GOPATH)
 # protoc-gen-go parameters for properly generating the import path for PGV
 VALIDATE_IMPORT := Mvalidate/validate.proto=${PACKAGE}/validate
 GO_IMPORT_SPACES := ${VALIDATE_IMPORT},\
@@ -70,16 +70,14 @@ bazel-tests: ## runs all tests with Bazel
 example-workspace: ## run all tests in the example workspace
 	cd example-workspace && bazel test //... --test_output=errors
 
-cleantestcases:
+.PHONY: testcases
+testcases: bin/protoc-gen-go ## generate the test harness case protos
 	rm -r tests/harness/cases/base/go || true
 	mkdir tests/harness/cases/base/go
 	rm -r tests/harness/cases/other_package/go || true
 	mkdir tests/harness/cases/other_package/go
 	rm -r tests/harness/cases/yet_another_package/go || true
 	mkdir tests/harness/cases/yet_another_package/go
-
-.PHONY: testcases
-testcases: bin/protoc-gen-go cleantestcases ## generate the test harness case protos
 	# protoc-gen-go makes us go a package at a time
 	cd tests/harness/cases/other_package && \
 	protoc \
@@ -101,89 +99,22 @@ testcases: bin/protoc-gen-go cleantestcases ## generate the test harness case pr
 	protoc \
 		-I . \
 		-I ../../../.. \
-		--go_out="module=${PACKAGE}/tests/harness/cases/base/go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go;other_package,Mtests/harness/cases/yet_another_package/another_embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go,${GO_IMPORT}:./go" \
+		--go_out="module=${PACKAGE}/tests/harness/cases/base/go,Mtests/harness/cases/other_package/other_embed.proto=${PACKAGE}/tests/harness/cases/other_package/go;other_package,Mtests/harness/cases/yet_another_package/another_embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go,${GO_IMPORT}:./go" \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--validate_out="module=${PACKAGE}/tests/harness/cases/base/go,lang=go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go,Mtests/harness/cases/yet_another_package/another_embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go:./go" \
-		./*.proto
-
-cleantestcases-cc:
-	rm -r tests/harness/cases/base/cpp || true
-	mkdir tests/harness/cases/base/cpp
-	rm -r tests/harness/cases/other_package/cpp || true
-	mkdir tests/harness/cases/other_package/cpp
-	rm -r tests/harness/cases/yet_another_package/cpp || true
-	mkdir tests/harness/cases/yet_another_package/cpp
-
-.PHONY: testcases-cc
-testcases-cc: bin/protoc-gen-go cleantestcases-cc ## generate the test harness case protos
-	cd tests/harness/cases/other_package && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--cpp_out="./cpp" \
-		--validate_out="lang=cc:./cpp" \
-		./*.proto
-	cd tests/harness/cases/yet_another_package && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--cpp_out="./cpp" \
-		--validate_out="lang=cc:./cpp" \
-		./*.proto
-	cd tests/harness/cases/base && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--cpp_out="./cpp" \
-		--validate_out="lang=cc:./cpp" \
-		./*.proto
-
-cleantestcases-java:
-	rm -r tests/harness/cases/base/java || true
-	mkdir tests/harness/cases/base/java
-	rm -r tests/harness/cases/other_package/java || true
-	mkdir tests/harness/cases/other_package/java
-	rm -r tests/harness/cases/yet_another_package/java || true
-	mkdir tests/harness/cases/yet_another_package/java
-
-.PHONY: testcases-java
-testcases-java: bin/protoc-gen-go cleantestcases-java ## generate the test harness case protos
-	cd tests/harness/cases/other_package && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--java_out="." \
-		--validate_out="lang=java:./java" \
-		./*.proto
-	cd tests/harness/cases/yet_another_package && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--java_out="." \
-		--validate_out="lang=java:./java" \
-		./*.proto
-	cd tests/harness/cases/base && \
-	protoc \
-		-I . \
-		-I ../../../.. \
-		--java_out="." \
-		--validate_out="lang=java:./java" \
+		--validate_out="module=${PACKAGE}/tests/harness/cases/base/go,lang=go,Mtests/harness/cases/other_package/other_embed.proto=${PACKAGE}/tests/harness/cases/other_package/go,Mtests/harness/cases/yet_another_package/another_embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go:./go" \
 		./*.proto
 
 validate/validate.pb.go: bin/protoc-gen-go validate/validate.proto
 	protoc -I . \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
 		--go_opt=paths=source_relative \
-		--go_out="${GO_IMPORT}:." \
-		validate/validate.proto
+		--go_out="${GO_IMPORT}:." validate/validate.proto
 
 tests/harness/go/harness.pb.go: bin/protoc-gen-go tests/harness/harness.proto
 	# generates the test harness protos
 	cd tests/harness && protoc -I . \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--go_out="module=${PACKAGE}/tests/harness/go,${GO_IMPORT}:./go" \
-		--cpp_out="./cc" \
-		harness.proto
+		--go_out="module=${PACKAGE}/tests/harness/go,${GO_IMPORT}:./go" harness.proto
 
 tests/harness/go/main/go-harness:
 	# generates the go-specific test harness
@@ -192,7 +123,7 @@ tests/harness/go/main/go-harness:
 tests/harness/cc/cc-harness: tests/harness/cc/harness.cc
 	# generates the C++-specific test harness
 	# use bazel which knows how to pull in the C++ common proto libraries
-	bazel build //tests/harness/cc:cc-harness --verbose_failures
+	bazel build //tests/harness/cc:cc-harness
 	cp bazel-bin/tests/harness/cc/cc-harness $@
 	chmod 0755 $@
 
