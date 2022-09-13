@@ -33,8 +33,8 @@ proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//tests/harness/cases/other_package:embed_proto",
-        "//tests/harness/cases/yet_another_package:embed_proto",
+        "//tests/harness/cases/other_package:other_embed_proto",
+        "//tests/harness/cases/yet_another_package:another_embed_proto",
         "//validate:validate_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
@@ -45,7 +45,7 @@ proto_library(
 
 pgv_go_proto_library(
     name = "go",
-    importpath = "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/go",
+    importpath = "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/base/go",
     proto = ":cases_proto",
     deps = [
         "//tests/harness/cases/other_package:go",
@@ -108,9 +108,9 @@ py_proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//validate:validate_py",
         "//tests/harness/cases/other_package:embed_python_proto",
         "//tests/harness/cases/yet_another_package:embed_python_proto",
+        "//validate:validate_py",
         "@com_google_protobuf//:protobuf_python",
     ],
 )

@@ -9,61 +9,61 @@
 
 #include "validate/validate.h"
 
-#include "tests/harness/cases/bool.pb.h"
-#include "tests/harness/cases/bool.pb.validate.h"
-#include "tests/harness/cases/bytes.pb.h"
-#include "tests/harness/cases/bytes.pb.validate.h"
-#include "tests/harness/cases/enums.pb.h"
-#include "tests/harness/cases/enums.pb.validate.h"
-#include "tests/harness/cases/filename-with-dash.pb.h"
-#include "tests/harness/cases/filename-with-dash.pb.validate.h"
-#include "tests/harness/cases/maps.pb.h"
-#include "tests/harness/cases/maps.pb.validate.h"
-#include "tests/harness/cases/messages.pb.h"
-#include "tests/harness/cases/messages.pb.validate.h"
-#include "tests/harness/cases/numbers.pb.h"
-#include "tests/harness/cases/numbers.pb.validate.h"
-#include "tests/harness/cases/oneofs.pb.h"
-#include "tests/harness/cases/oneofs.pb.validate.h"
-#include "tests/harness/cases/repeated.pb.h"
-#include "tests/harness/cases/repeated.pb.validate.h"
-#include "tests/harness/cases/strings.pb.h"
-#include "tests/harness/cases/strings.pb.validate.h"
-#include "tests/harness/cases/wkt_any.pb.h"
-#include "tests/harness/cases/wkt_any.pb.validate.h"
-#include "tests/harness/cases/wkt_duration.pb.h"
-#include "tests/harness/cases/wkt_duration.pb.validate.h"
-#include "tests/harness/cases/wkt_nested.pb.h"
-#include "tests/harness/cases/wkt_nested.pb.validate.h"
-#include "tests/harness/cases/wkt_timestamp.pb.h"
-#include "tests/harness/cases/wkt_timestamp.pb.validate.h"
-#include "tests/harness/cases/wkt_wrappers.pb.h"
-#include "tests/harness/cases/wkt_wrappers.pb.validate.h"
-#include "tests/harness/cases/kitchen_sink.pb.h"
-#include "tests/harness/cases/kitchen_sink.pb.validate.h"
+#include "tests/harness/cases/base/bool.pb.h"
+#include "tests/harness/cases/base/bool.pb.validate.h"
+#include "tests/harness/cases/base/bytes.pb.h"
+#include "tests/harness/cases/base/bytes.pb.validate.h"
+#include "tests/harness/cases/base/enums.pb.h"
+#include "tests/harness/cases/base/enums.pb.validate.h"
+#include "tests/harness/cases/base/filename-with-dash.pb.h"
+#include "tests/harness/cases/base/filename-with-dash.pb.validate.h"
+#include "tests/harness/cases/base/maps.pb.h"
+#include "tests/harness/cases/base/maps.pb.validate.h"
+#include "tests/harness/cases/base/messages.pb.h"
+#include "tests/harness/cases/base/messages.pb.validate.h"
+#include "tests/harness/cases/base/numbers.pb.h"
+#include "tests/harness/cases/base/numbers.pb.validate.h"
+#include "tests/harness/cases/base/oneofs.pb.h"
+#include "tests/harness/cases/base/oneofs.pb.validate.h"
+#include "tests/harness/cases/base/repeated.pb.h"
+#include "tests/harness/cases/base/repeated.pb.validate.h"
+#include "tests/harness/cases/base/strings.pb.h"
+#include "tests/harness/cases/base/strings.pb.validate.h"
+#include "tests/harness/cases/base/wkt_any.pb.h"
+#include "tests/harness/cases/base/wkt_any.pb.validate.h"
+#include "tests/harness/cases/base/wkt_duration.pb.h"
+#include "tests/harness/cases/base/wkt_duration.pb.validate.h"
+#include "tests/harness/cases/base/wkt_nested.pb.h"
+#include "tests/harness/cases/base/wkt_nested.pb.validate.h"
+#include "tests/harness/cases/base/wkt_timestamp.pb.h"
+#include "tests/harness/cases/base/wkt_timestamp.pb.validate.h"
+#include "tests/harness/cases/base/wkt_wrappers.pb.h"
+#include "tests/harness/cases/base/wkt_wrappers.pb.validate.h"
+#include "tests/harness/cases/base/kitchen_sink.pb.h"
+#include "tests/harness/cases/base/kitchen_sink.pb.validate.h"
 
 #include "tests/harness/harness.pb.h"
 
 // These macros are defined in the various validation headers and call the
 // X macro once for each message class in the header. Add macros here with new
 // pb.validate.h headers.
-#define X_TESTS_HARNESS_CASES(X) \
-  X_TESTS_HARNESS_CASES_BOOL(X) \
-  X_TESTS_HARNESS_CASES_BYTES(X) \
-  X_TESTS_HARNESS_CASES_ENUMS(X) \
-  X_TESTS_HARNESS_CASES_FILENAME_WITH_DASH(X) \
-  X_TESTS_HARNESS_CASES_MAPS(X) \
-  X_TESTS_HARNESS_CASES_MESSAGES(X) \
-  X_TESTS_HARNESS_CASES_NUMBERS(X) \
-  X_TESTS_HARNESS_CASES_ONEOFS(X) \
-  X_TESTS_HARNESS_CASES_REPEATED(X) \
-  X_TESTS_HARNESS_CASES_STRINGS(X) \
-  X_TESTS_HARNESS_CASES_WKT_ANY(X) \
-  X_TESTS_HARNESS_CASES_WKT_DURATION(X) \
-  X_TESTS_HARNESS_CASES_WKT_NESTED(X) \
-  X_TESTS_HARNESS_CASES_WKT_TIMESTAMP(X) \
-  X_TESTS_HARNESS_CASES_WKT_WRAPPERS(X) \
-  X_TESTS_HARNESS_CASES_KITCHEN_SINK(X) \
+#define X_TESTS_HARNESS_CASES_BASE(X) \
+  X_TESTS_HARNESS_CASES_BASE_BOOL(X) \
+  X_TESTS_HARNESS_CASES_BASE_BYTES(X) \
+  X_TESTS_HARNESS_CASES_BASE_ENUMS(X) \
+  X_TESTS_HARNESS_CASES_BASE_FILENAME_WITH_DASH(X) \
+  X_TESTS_HARNESS_CASES_BASE_MAPS(X) \
+  X_TESTS_HARNESS_CASES_BASE_MESSAGES(X) \
+  X_TESTS_HARNESS_CASES_BASE_NUMBERS(X) \
+  X_TESTS_HARNESS_CASES_BASE_ONEOFS(X) \
+  X_TESTS_HARNESS_CASES_BASE_REPEATED(X) \
+  X_TESTS_HARNESS_CASES_BASE_STRINGS(X) \
+  X_TESTS_HARNESS_CASES_BASE_WKT_ANY(X) \
+  X_TESTS_HARNESS_CASES_BASE_WKT_DURATION(X) \
+  X_TESTS_HARNESS_CASES_BASE_WKT_NESTED(X) \
+  X_TESTS_HARNESS_CASES_BASE_WKT_TIMESTAMP(X) \
+  X_TESTS_HARNESS_CASES_BASE_WKT_WRAPPERS(X) \
+  X_TESTS_HARNESS_CASES_BASE_KITCHEN_SINK(X) \
 
 namespace {
 
@@ -130,12 +130,12 @@ std::function<TestResult()> GetValidationCheck(const Any& msg) {
     };                                                     \
   }
 
-X_TESTS_HARNESS_CASES(TRY_RETURN_VALIDATE_CALLABLE)
+X_TESTS_HARNESS_CASES_BASE(TRY_RETURN_VALIDATE_CALLABLE)
 #undef TRY_RETURN_VALIDATE_CALLABLE
 
-  // Special handling for ignored messages, which don't have any code generated
+  // Special handling for ignored messagems, which don't have any code generated
   // for them.
-  if (msg.Is<::tests::harness::cases::MessageIgnored>()) {
+  if (msg.Is<::tests::harness::cases::base::MessageIgnored>()) {
     return []() {
       TestResult result;
       result.set_valid(true);

@@ -12,15 +12,18 @@ py_binary(
         # and not the one riding on the py_proto_library dependencies
         requirement("protobuf"),
         "//tests/harness:harness_py_proto",
-        "//tests/harness/cases:cases_py_proto",
-        "//python:validator_py"
-    ]
+        "//tests/harness/cases/base:cases_py_proto",
+        "//python:validator_py",
+    ],
 )
 
 py_test(
     name = "python-requirements-match",
     srcs = ["requirements_test.py"],
+    data = [
+        "//python:requirements.in",
+        "//python:setup.cfg",
+    ],
     main = "requirements_test.py",
     srcs_version = "PY3",
-    data = ["//python:setup.cfg", "//python:requirements.in"],
 )

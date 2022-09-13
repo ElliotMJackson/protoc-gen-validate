@@ -7,7 +7,7 @@ go_library(
     visibility = ["//visibility:private"],
     deps = [
         "//tests/harness:harness_go_proto",
-        "//tests/harness/cases:go",
+        "//tests/harness/cases/base:go",
         "//tests/harness/cases/other_package:go",
         "//tests/harness/cases/yet_another_package:go",
         "@org_golang_google_protobuf//proto:go_default_library",

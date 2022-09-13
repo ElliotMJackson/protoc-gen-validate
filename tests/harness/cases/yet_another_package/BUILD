@@ -11,9 +11,9 @@ load(
 )
 
 proto_library(
-    name = "embed_proto",
+    name = "another_embed_proto",
     srcs = [
-        "embed.proto",
+        "another_embed.proto",
     ],
     visibility = ["//visibility:public"],
     deps = ["//validate:validate_proto"],
@@ -22,7 +22,7 @@ proto_library(
 pgv_go_proto_library(
     name = "go",
     importpath = "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/yet_another_package/go",
-    proto = ":embed_proto",
+    proto = ":another_embed_proto",
     deps = [
         "@org_golang_google_protobuf//types/known/anypb:go_default_library",
     ],
@@ -31,12 +31,12 @@ pgv_go_proto_library(
 pgv_cc_proto_library(
     name = "cc",
     visibility = ["//tests:__subpackages__"],
-    deps = [":embed_proto"],
+    deps = [":another_embed_proto"],
 )
 
 proto_library(
     name = "yet_another_package_proto",
-    srcs = ["embed.proto"],
+    srcs = ["another_embed.proto"],
     visibility = ["//visibility:public"],
     deps = ["//validate:validate_proto"],
 )
@@ -59,19 +59,19 @@ go_library(
 java_proto_library(
     name = "embed_java_proto",
     visibility = ["//visibility:public"],
-    deps = [":embed_proto"],
+    deps = [":another_embed_proto"],
 )
 
 pgv_java_proto_library(
     name = "java",
     java_deps = [":embed_java_proto"],
     visibility = ["//visibility:public"],
-    deps = [":embed_proto"],
+    deps = [":another_embed_proto"],
 )
 
 py_proto_library(
     name = "embed_python_proto",
-    srcs = ["embed.proto"],
+    srcs = ["another_embed.proto"],
     visibility = ["//visibility:public"],
     deps = [
         "//validate:validate_py",

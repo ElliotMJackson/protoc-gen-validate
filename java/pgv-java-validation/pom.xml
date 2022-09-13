@@ -63,7 +63,7 @@
                             <protoSourceRoot>../../</protoSourceRoot>
                             <includes>
                                 <include>tests/harness/harness.proto</include>
-                                <include>tests/harness/cases/*.proto</include>
+                                <include>tests/harness/cases/base/*.proto</include>
                                 <include>tests/harness/cases/other_package/*.proto</include>
                                 <include>tests/harness/cases/yet_another_package/*.proto</include>
                             </includes>
@@ -78,7 +78,7 @@
                             <protoSourceRoot>../../</protoSourceRoot>
                             <pluginParameter>lang=java</pluginParameter>
                             <includes>
-                                <include>tests/harness/cases/*.proto</include>
+                                <include>tests/harness/cases/base/*.proto</include>
                                 <include>tests/harness/cases/other_package/*.proto</include>
                                 <include>tests/harness/cases/yet_another_package/*.proto</include>
                             </includes>
