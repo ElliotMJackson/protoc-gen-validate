@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package io.envoyproxy.pvg.proto;
+package io.envoyproxy.pvg.test;
 
 enum TestEnum {
   ZERO = 0;

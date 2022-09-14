@@ -1,6 +1,6 @@
 package io.envoyproxy.pgv;
 
-import io.envoyproxy.pvg.proto.TokenUse;
+import io.envoyproxy.pvg.test.TokenUse;
 import org.assertj.core.api.AtomicBooleanAssert;
 import org.junit.Test;
 

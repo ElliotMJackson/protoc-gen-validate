@@ -1,6 +1,6 @@
 package io.envoyproxy.pgv;
 
-import io.envoyproxy.pvg.proto.Enum;
+import io.envoyproxy.pvg.test.Enum;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
