@@ -72,8 +72,8 @@ example-workspace: ## run all tests in the example workspace
 
 .PHONY: testcases
 testcases: bin/protoc-gen-go ## generate the test harness case protos
-	rm -r tests/harness/cases/go || true
-	mkdir tests/harness/cases/go
+	rm -r tests/harness/cases/base/go || true
+	mkdir tests/harness/cases/base/go
 	rm -r tests/harness/cases/other_package/go || true
 	mkdir tests/harness/cases/other_package/go
 	rm -r tests/harness/cases/yet_another_package/go || true
@@ -95,13 +95,13 @@ testcases: bin/protoc-gen-go ## generate the test harness case protos
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
 		--validate_out="module=${PACKAGE}/tests/harness/cases/yet_another_package/go,lang=go:./go" \
 		./*.proto
-	cd tests/harness/cases && \
+	cd tests/harness/cases/base && \
 	protoc \
 		-I . \
-		-I ../../.. \
-		--go_out="module=${PACKAGE}/tests/harness/cases/go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go;other_package,Mtests/harness/cases/yet_another_package/embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go,${GO_IMPORT}:./go" \
+		-I ../../../.. \
+		--go_out="module=${PACKAGE}/tests/harness/cases/base/go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go;other_package,Mtests/harness/cases/yet_another_package/embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go,${GO_IMPORT}:./go" \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--validate_out="module=${PACKAGE}/tests/harness/cases/go,lang=go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go,Mtests/harness/cases/yet_another_package/embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go:./go" \
+		--validate_out="module=${PACKAGE}/tests/harness/cases/base/go,lang=go,Mtests/harness/cases/other_package/embed.proto=${PACKAGE}/tests/harness/cases/other_package/go,Mtests/harness/cases/yet_another_package/embed.proto=${PACKAGE}/tests/harness/cases/yet_another_package/go:./go" \
 		./*.proto
 
 validate/validate.pb.go: bin/protoc-gen-go validate/validate.proto
@@ -171,7 +171,7 @@ clean: ## clean up generated files
 		tests/harness/go/main/go-harness \
 		tests/harness/go/harness.pb.go
 	rm -rf \
-		tests/harness/cases/go \
+		tests/harness/cases/base/go \
 		tests/harness/cases/other_package/go \
 		tests/harness/cases/yet_another_package/go
 	rm -rf \

@@ -8,7 +8,7 @@ import io.envoyproxy.pgv.UnimplementedException;
 import io.envoyproxy.pgv.ValidationException;
 import io.envoyproxy.pgv.ValidatorIndex;
 import tests.harness.Harness;
-import tests.harness.cases.*;
+import tests.harness.cases.base.*;
 import tests.harness.cases.other_package.EmbedOuterClass;
 import io.envoyproxy.pgv.validate.Validate;
 
@@ -36,8 +36,7 @@ public class JavaHarness {
                     WktNested.getDescriptor().toProto(),
                     WktTimestamp.getDescriptor().toProto(),
                     WktWrappers.getDescriptor().toProto(),
-                    EmbedOuterClass.getDescriptor().toProto()
-            ));
+                    EmbedOuterClass.getDescriptor().toProto()));
 
             ExtensionRegistry registry = ExtensionRegistry.newInstance();
             Validate.registerAllExtensions(registry);
@@ -49,17 +48,21 @@ public class JavaHarness {
 
             writeResult(Harness.TestResult.newBuilder().setValid(true).build());
         } catch (UnimplementedException ex) {
-            writeResult(Harness.TestResult.newBuilder().setValid(false).setAllowFailure(true).addReasons(ex.getMessage()).build());
+            writeResult(Harness.TestResult.newBuilder().setValid(false).setAllowFailure(true)
+                    .addReasons(ex.getMessage()).build());
         } catch (ValidationException ex) {
             writeResult(Harness.TestResult.newBuilder().setValid(false).addReasons(ex.getMessage()).build());
         } catch (NullPointerException ex) {
             if (message.getDescriptorForType().getOptions().getExtension(Validate.ignored)) {
-                writeResult(Harness.TestResult.newBuilder().setValid(false).setAllowFailure(true).addReasons("validation not generated due to ignore option").build());
+                writeResult(Harness.TestResult.newBuilder().setValid(false).setAllowFailure(true)
+                        .addReasons("validation not generated due to ignore option").build());
             } else {
-                writeResult(Harness.TestResult.newBuilder().setValid(false).setError(true).addReasons(Throwables.getStackTraceAsString(ex)).build());
+                writeResult(Harness.TestResult.newBuilder().setValid(false).setError(true)
+                        .addReasons(Throwables.getStackTraceAsString(ex)).build());
             }
         } catch (Throwable ex) {
-            writeResult(Harness.TestResult.newBuilder().setValid(false).setError(true).addReasons(Throwables.getStackTraceAsString(ex)).build());
+            writeResult(Harness.TestResult.newBuilder().setValid(false).setError(true)
+                    .addReasons(Throwables.getStackTraceAsString(ex)).build());
         }
 
         System.out.flush();

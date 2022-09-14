@@ -1,4 +1,4 @@
-#include "tests/harness/cases/bool.pb.h"
+#include "tests/harness/cases/base/bool.pb.h"
 #include "tests/harness/cc/other.pb.h"
 #include "validate/validate.h"
 
@@ -11,7 +11,7 @@ int main() {
     return EXIT_FAILURE;
   }
 
-  tests::harness::cases::BoolConstTrue bool_const_true;
+  tests::harness::cases::base::BoolConstTrue bool_const_true;
   bool_const_true.set_val(false);
   if (pgv::BaseValidator::AbstractCheckMessage(bool_const_true, &err)) {
     return EXIT_FAILURE;

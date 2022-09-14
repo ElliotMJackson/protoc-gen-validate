@@ -12,7 +12,7 @@ bazel-*
 __pycache__/
 *.py[cod]
 
-/tests/harness/cases/go
+/tests/harness/cases/base/go
 /tests/harness/cases/gogo
 /tests/harness/cases/other_package/go
 /tests/harness/cases/other_package/gogo
