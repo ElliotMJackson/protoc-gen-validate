@@ -1,5 +1,0 @@
-syntax = "proto3";
-
-package tests.harness.proto.base;
-option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go;base";
-import "validate/validate.proto";

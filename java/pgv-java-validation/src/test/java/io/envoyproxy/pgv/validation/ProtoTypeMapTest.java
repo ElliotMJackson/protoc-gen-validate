@@ -5,8 +5,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Message;
 import org.junit.Test;
 import tests.harness.Harness;
-import tests.harness.proto.Messages;
-import tests.harness.proto.Numbers;
+import tests.proto.Messages;
+import tests.proto.Numbers;
 
 import java.util.Collections;
 

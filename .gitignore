@@ -12,12 +12,12 @@ bazel-*
 __pycache__/
 *.py[cod]
 
-/tests/harness/proto/base/go
-/tests/harness/proto/gogo
-/tests/harness/proto/other_package/go
-/tests/harness/proto/other_package/gogo
-/tests/harness/proto/yet_another_package/go
-/tests/harness/proto/yet_another_package/gogo
+/tests/proto/base/go
+/tests/proto/gogo
+/tests/proto/other_package/go
+/tests/proto/other_package/gogo
+/tests/proto/yet_another_package/go
+/tests/proto/yet_another_package/gogo
 /tests/harness/go/harness.pb.go
 /tests/harness/go/main/go-harness
 /tests/harness/go/main/go-harness.exe
@@ -29,8 +29,8 @@ __pycache__/
 
 /validate/__pycache__
 
-/tests/harness/proto/**/*.cc
-/tests/harness/proto/**/*.h
+/tests/proto/**/*.cc
+/tests/proto/**/*.h
 
 /java/.idea
 /java/**/.project

@@ -33,7 +33,7 @@ cc_binary(
     visibility = ["//visibility:public"],
     deps = [
         "//tests/harness:harness_cc_proto",
-        "//tests/harness/proto/base:cc",
+        "//tests/proto/base:cc",
     ],
 )
 
@@ -56,7 +56,7 @@ cc_test(
     }),
     deps = [
         ":other_cc_proto",
-        "//tests/harness/proto/base:cc",
+        "//tests/proto/base:cc",
     ],
 )
 
@@ -83,7 +83,7 @@ cc_library(
         ":windows_x86_64": MSVC_C_OPTS,
         "//conditions:default": POSIX_C_OPTS,
     }),
-    deps = ["//tests/harness/proto/base:cc"],
+    deps = ["//tests/proto/base:cc"],
     alwayslink = 1,
 )
 
@@ -94,6 +94,6 @@ cc_library(
         ":windows_x86_64": MSVC_C_OPTS,
         "//conditions:default": POSIX_C_OPTS,
     }),
-    deps = ["//tests/harness/proto/base:cc"],
+    deps = ["//tests/proto/base:cc"],
     alwayslink = 1,
 )

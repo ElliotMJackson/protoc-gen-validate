@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package tests.harness.proto.base;
-option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go;base";
+package tests.proto.base;
+option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go;base";
 import "validate/validate.proto";
-import "tests/harness/proto/other_package/embed.proto";
-import "tests/harness/proto/yet_another_package/embed.proto";
+import "tests/proto/other_package/embed.proto";
+import "tests/proto/yet_another_package/embed.proto";
 
 enum TestEnum {
   ZERO = 0;

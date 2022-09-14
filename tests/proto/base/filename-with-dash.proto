@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package tests.proto.base;
+option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go;base";
+import "validate/validate.proto";

@@ -1,7 +1,7 @@
 empty :=
 space := $(empty) $(empty)
 PACKAGE := github.com/envoyproxy/protoc-gen-validate
-
+GOPATH := $(shell go env GOPATH)
 # protoc-gen-go parameters for properly generating the import path for PGV
 VALIDATE_IMPORT := Mvalidate/validate.proto=${PACKAGE}/validate
 GO_IMPORT_SPACES := ${VALIDATE_IMPORT},\
@@ -70,38 +70,40 @@ bazel-tests: ## runs all tests with Bazel
 example-workspace: ## run all tests in the example workspace
 	cd example-workspace && bazel test //... --test_output=errors
 
+cleantestcases:
+	rm -r tests/proto/base/go || true
+	rm -r tests/proto/other_package/go || true
+	rm -r tests/proto/yet_another_package/go || true
+
 .PHONY: testcases
-testcases: bin/protoc-gen-go ## generate the test harness case protos
-	rm -r tests/harness/proto/base/go || true
-	mkdir tests/harness/proto/base/go
-	rm -r tests/harness/proto/other_package/go || true
-	mkdir tests/harness/proto/other_package/go
-	rm -r tests/harness/proto/yet_another_package/go || true
-	mkdir tests/harness/proto/yet_another_package/go
+testcases: bin/protoc-gen-go cleantestcases ## generate the test harness case protos
 	# protoc-gen-go makes us go a package at a time
-	cd tests/harness/proto/other_package && \
+	mkdir tests/proto/other_package/go && \
+	cd tests/proto/other_package && \
 	protoc \
 		-I . \
-		-I ../../../.. \
-		--go_out="module=${PACKAGE}/tests/harness/proto/other_package/go,${GO_IMPORT}:./go" \
+		-I ../../.. \
+		--go_out="module=${PACKAGE}/tests/proto/other_package/go,${GO_IMPORT}:./go" \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--validate_out="module=${PACKAGE}/tests/harness/proto/other_package/go,lang=go:./go" \
+		--validate_out="module=${PACKAGE}/tests/proto/other_package/go,lang=go:./go" \
 		./*.proto
-	cd tests/harness/proto/yet_another_package && \
+	mkdir tests/proto/yet_another_package/go && \
+	cd tests/proto/yet_another_package && \
 	protoc \
 		-I . \
-		-I ../../../.. \
-		--go_out="module=${PACKAGE}/tests/harness/proto/yet_another_package/go,${GO_IMPORT}:./go" \
+		-I ../../.. \
+		--go_out="module=${PACKAGE}/tests/proto/yet_another_package/go,${GO_IMPORT}:./go" \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--validate_out="module=${PACKAGE}/tests/harness/proto/yet_another_package/go,lang=go:./go" \
+		--validate_out="module=${PACKAGE}/tests/proto/yet_another_package/go,lang=go:./go" \
 		./*.proto
-	cd tests/harness/proto/base && \
+	mkdir tests/proto/base/go && \
+	cd tests/proto/base && \
 	protoc \
 		-I . \
-		-I ../../../.. \
-		--go_out="module=${PACKAGE}/tests/harness/proto/base/go,Mtests/harness/proto/other_package/embed.proto=${PACKAGE}/tests/harness/proto/other_package/go;other_package,Mtests/harness/proto/yet_another_package/embed.proto=${PACKAGE}/tests/harness/proto/yet_another_package/go,${GO_IMPORT}:./go" \
+		-I ../../.. \
+		--go_out="module=${PACKAGE}/tests/proto/base/go,Mtests/proto/other_package/embed.proto=${PACKAGE}/tests/proto/other_package/go;other_package,Mtests/proto/yet_another_package/embed.proto=${PACKAGE}/tests/proto/yet_another_package/go,${GO_IMPORT}:./go" \
 		--plugin=protoc-gen-go=${GOPATH}/bin/protoc-gen-go \
-		--validate_out="module=${PACKAGE}/tests/harness/proto/base/go,lang=go,Mtests/harness/proto/other_package/embed.proto=${PACKAGE}/tests/harness/proto/other_package/go,Mtests/harness/proto/yet_another_package/embed.proto=${PACKAGE}/tests/harness/proto/yet_another_package/go:./go" \
+		--validate_out="module=${PACKAGE}/tests/proto/base/go,lang=go,Mtests/proto/other_package/embed.proto=${PACKAGE}/tests/proto/other_package/go,Mtests/proto/yet_another_package/embed.proto=${PACKAGE}/tests/proto/yet_another_package/go:./go" \
 		./*.proto
 
 validate/validate.pb.go: bin/protoc-gen-go validate/validate.proto
@@ -171,9 +173,9 @@ clean: ## clean up generated files
 		tests/harness/go/main/go-harness \
 		tests/harness/go/harness.pb.go
 	rm -rf \
-		tests/harness/proto/base/go \
-		tests/harness/proto/other_package/go \
-		tests/harness/proto/yet_another_package/go
+		tests/proto/base/go \
+		tests/proto/other_package/go \
+		tests/proto/yet_another_package/go
 	rm -rf \
 		python/dist \
 		python/*.egg-info

@@ -9,61 +9,61 @@
 
 #include "validate/validate.h"
 
-#include "tests/harness/proto/base/bool.pb.h"
-#include "tests/harness/proto/base/bool.pb.validate.h"
-#include "tests/harness/proto/base/bytes.pb.h"
-#include "tests/harness/proto/base/bytes.pb.validate.h"
-#include "tests/harness/proto/base/enums.pb.h"
-#include "tests/harness/proto/base/enums.pb.validate.h"
-#include "tests/harness/proto/base/filename-with-dash.pb.h"
-#include "tests/harness/proto/base/filename-with-dash.pb.validate.h"
-#include "tests/harness/proto/base/maps.pb.h"
-#include "tests/harness/proto/base/maps.pb.validate.h"
-#include "tests/harness/proto/base/messages.pb.h"
-#include "tests/harness/proto/base/messages.pb.validate.h"
-#include "tests/harness/proto/base/numbers.pb.h"
-#include "tests/harness/proto/base/numbers.pb.validate.h"
-#include "tests/harness/proto/base/oneofs.pb.h"
-#include "tests/harness/proto/base/oneofs.pb.validate.h"
-#include "tests/harness/proto/base/repeated.pb.h"
-#include "tests/harness/proto/base/repeated.pb.validate.h"
-#include "tests/harness/proto/base/strings.pb.h"
-#include "tests/harness/proto/base/strings.pb.validate.h"
-#include "tests/harness/proto/base/wkt_any.pb.h"
-#include "tests/harness/proto/base/wkt_any.pb.validate.h"
-#include "tests/harness/proto/base/wkt_duration.pb.h"
-#include "tests/harness/proto/base/wkt_duration.pb.validate.h"
-#include "tests/harness/proto/base/wkt_nested.pb.h"
-#include "tests/harness/proto/base/wkt_nested.pb.validate.h"
-#include "tests/harness/proto/base/wkt_timestamp.pb.h"
-#include "tests/harness/proto/base/wkt_timestamp.pb.validate.h"
-#include "tests/harness/proto/base/wkt_wrappers.pb.h"
-#include "tests/harness/proto/base/wkt_wrappers.pb.validate.h"
-#include "tests/harness/proto/base/kitchen_sink.pb.h"
-#include "tests/harness/proto/base/kitchen_sink.pb.validate.h"
+#include "tests/proto/base/bool.pb.h"
+#include "tests/proto/base/bool.pb.validate.h"
+#include "tests/proto/base/bytes.pb.h"
+#include "tests/proto/base/bytes.pb.validate.h"
+#include "tests/proto/base/enums.pb.h"
+#include "tests/proto/base/enums.pb.validate.h"
+#include "tests/proto/base/filename-with-dash.pb.h"
+#include "tests/proto/base/filename-with-dash.pb.validate.h"
+#include "tests/proto/base/maps.pb.h"
+#include "tests/proto/base/maps.pb.validate.h"
+#include "tests/proto/base/messages.pb.h"
+#include "tests/proto/base/messages.pb.validate.h"
+#include "tests/proto/base/numbers.pb.h"
+#include "tests/proto/base/numbers.pb.validate.h"
+#include "tests/proto/base/oneofs.pb.h"
+#include "tests/proto/base/oneofs.pb.validate.h"
+#include "tests/proto/base/repeated.pb.h"
+#include "tests/proto/base/repeated.pb.validate.h"
+#include "tests/proto/base/strings.pb.h"
+#include "tests/proto/base/strings.pb.validate.h"
+#include "tests/proto/base/wkt_any.pb.h"
+#include "tests/proto/base/wkt_any.pb.validate.h"
+#include "tests/proto/base/wkt_duration.pb.h"
+#include "tests/proto/base/wkt_duration.pb.validate.h"
+#include "tests/proto/base/wkt_nested.pb.h"
+#include "tests/proto/base/wkt_nested.pb.validate.h"
+#include "tests/proto/base/wkt_timestamp.pb.h"
+#include "tests/proto/base/wkt_timestamp.pb.validate.h"
+#include "tests/proto/base/wkt_wrappers.pb.h"
+#include "tests/proto/base/wkt_wrappers.pb.validate.h"
+#include "tests/proto/base/kitchen_sink.pb.h"
+#include "tests/proto/base/kitchen_sink.pb.validate.h"
 
 #include "tests/harness/harness.pb.h"
 
 // These macros are defined in the various validation headers and call the
 // X macro once for each message class in the header. Add macros here with new
 // pb.validate.h headers.
-#define X_TESTS_HARNESS_PROTO_BASE(X) \
-  X_TESTS_HARNESS_PROTO_BASE_BOOL(X) \
-  X_TESTS_HARNESS_PROTO_BASE_BYTES(X) \
-  X_TESTS_HARNESS_PROTO_BASE_ENUMS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_FILENAME_WITH_DASH(X) \
-  X_TESTS_HARNESS_PROTO_BASE_MAPS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_MESSAGES(X) \
-  X_TESTS_HARNESS_PROTO_BASE_NUMBERS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_ONEOFS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_REPEATED(X) \
-  X_TESTS_HARNESS_PROTO_BASE_STRINGS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_WKT_ANY(X) \
-  X_TESTS_HARNESS_PROTO_BASE_WKT_DURATION(X) \
-  X_TESTS_HARNESS_PROTO_BASE_WKT_NESTED(X) \
-  X_TESTS_HARNESS_PROTO_BASE_WKT_TIMESTAMP(X) \
-  X_TESTS_HARNESS_PROTO_BASE_WKT_WRAPPERS(X) \
-  X_TESTS_HARNESS_PROTO_BASE_KITCHEN_SINK(X) \
+#define X_TESTS_PROTO_BASE(X) \
+  X_TESTS_PROTO_BASE_BOOL(X) \
+  X_TESTS_PROTO_BASE_BYTES(X) \
+  X_TESTS_PROTO_BASE_ENUMS(X) \
+  X_TESTS_PROTO_BASE_FILENAME_WITH_DASH(X) \
+  X_TESTS_PROTO_BASE_MAPS(X) \
+  X_TESTS_PROTO_BASE_MESSAGES(X) \
+  X_TESTS_PROTO_BASE_NUMBERS(X) \
+  X_TESTS_PROTO_BASE_ONEOFS(X) \
+  X_TESTS_PROTO_BASE_REPEATED(X) \
+  X_TESTS_PROTO_BASE_STRINGS(X) \
+  X_TESTS_PROTO_BASE_WKT_ANY(X) \
+  X_TESTS_PROTO_BASE_WKT_DURATION(X) \
+  X_TESTS_PROTO_BASE_WKT_NESTED(X) \
+  X_TESTS_PROTO_BASE_WKT_TIMESTAMP(X) \
+  X_TESTS_PROTO_BASE_WKT_WRAPPERS(X) \
+  X_TESTS_PROTO_BASE_KITCHEN_SINK(X) \
 
 namespace {
 
@@ -130,12 +130,12 @@ std::function<TestResult()> GetValidationCheck(const Any& msg) {
     };                                                     \
   }
 
-X_TESTS_HARNESS_PROTO_BASE(TRY_RETURN_VALIDATE_CALLABLE)
+X_TESTS_PROTO_BASE(TRY_RETURN_VALIDATE_CALLABLE)
 #undef TRY_RETURN_VALIDATE_CALLABLE
 
   // Special handling for ignored messages, which don't have any code generated
   // for them.
-  if (msg.Is<::tests::harness::proto::base::MessageIgnored>()) {
+  if (msg.Is<::tests::proto::base::MessageIgnored>()) {
     return []() {
       TestResult result;
       result.set_valid(true);

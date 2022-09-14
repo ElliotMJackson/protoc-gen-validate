@@ -7,10 +7,10 @@ import (
 	"os"
 
 	harness "github.com/envoyproxy/protoc-gen-validate/tests/harness/go"
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go"
-	cases "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go"
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/other_package/go"
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/yet_another_package/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go"
+	cases "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/proto/other_package/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/proto/yet_another_package/go"
 	"google.golang.org/protobuf/proto"
 )
 

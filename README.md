@@ -856,7 +856,7 @@ All PGV dependencies are currently checked into the project. To test PGV, `proto
 
 - **`make lint`**: runs static-analysis rules against the PGV codebase, including `golint`, `go vet`, and `gofmt -s`
 
-- **`make testcases`**: generates the proto files in [`/tests/harness/proto`](/tests/harness/proto). These are used by the test harness to verify the validation rules generated for each language.
+- **`make testcases`**: generates the proto files in [`/tests/proto`](/tests/proto). These are used by the test harness to verify the validation rules generated for each language.
 
 - **`make harness`**: executes the test-cases against each language's test harness.
 

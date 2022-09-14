@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package tests.harness.proto.base;
-option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go;base";
-import "tests/harness/proto/other_package/embed.proto";
+package tests.proto.base;
+option go_package = "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go;base";
+import "tests/proto/other_package/embed.proto";
 
 import "validate/validate.proto";
 
@@ -31,7 +31,7 @@ message Message {
   TestMsg val = 1;
 }
 message MessageCrossPackage {
-  tests.harness.proto.other_package.Embed val = 1;
+  tests.proto.other_package.Embed val = 1;
 }
 message MessageSkip {
   TestMsg val = 1 [(validate.rules).message.skip = true];

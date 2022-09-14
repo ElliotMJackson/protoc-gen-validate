@@ -33,8 +33,8 @@ proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//tests/harness/proto/other_package:embed_proto",
-        "//tests/harness/proto/yet_another_package:embed_proto",
+        "//tests/proto/other_package:embed_proto",
+        "//tests/proto/yet_another_package:embed_proto",
         "//validate:validate_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:duration_proto",
@@ -45,11 +45,11 @@ proto_library(
 
 pgv_go_proto_library(
     name = "go",
-    importpath = "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go",
+    importpath = "github.com/envoyproxy/protoc-gen-validate/tests/proto/base/go",
     proto = ":proto_proto",
     deps = [
-        "//tests/harness/proto/other_package:go",
-        "//tests/harness/proto/yet_another_package:go",
+        "//tests/proto/other_package:go",
+        "//tests/proto/yet_another_package:go",
         "@org_golang_google_protobuf//types/known/anypb:go_default_library",
         "@org_golang_google_protobuf//types/known/durationpb:go_default_library",
         "@org_golang_google_protobuf//types/known/timestamppb:go_default_library",
@@ -60,8 +60,8 @@ pgv_go_proto_library(
 pgv_cc_proto_library(
     name = "cc",
     cc_deps = [
-        "//tests/harness/proto/other_package:cc",
-        "//tests/harness/proto/yet_another_package:cc",
+        "//tests/proto/other_package:cc",
+        "//tests/proto/yet_another_package:cc",
     ],
     visibility = ["//tests:__subpackages__"],
     deps = [":proto_proto"],
@@ -77,8 +77,8 @@ pgv_java_proto_library(
     name = "java",
     java_deps = [
         ":proto_java_proto",
-        "//tests/harness/proto/other_package:java",
-        "//tests/harness/proto/yet_another_package:java",
+        "//tests/proto/other_package:java",
+        "//tests/proto/yet_another_package:java",
     ],
     visibility = ["//visibility:public"],
     deps = [":proto_proto"],
@@ -108,8 +108,8 @@ py_proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//tests/harness/proto/other_package:embed_python_proto",
-        "//tests/harness/proto/yet_another_package:embed_python_proto",
+        "//tests/proto/other_package:embed_python_proto",
+        "//tests/proto/yet_another_package:embed_python_proto",
         "//validate:validate_py",
         "@com_google_protobuf//:protobuf_python",
     ],
