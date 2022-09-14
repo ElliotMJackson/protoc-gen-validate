@@ -9,7 +9,6 @@ require (
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
 	golang.org/x/net v0.0.0-20220907135653-1e95f45603a7
 	golang.org/x/sys v0.0.0-20220908150016-7ac13a9a928d // indirect
-	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/tools v0.1.12
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/protobuf v1.28.1

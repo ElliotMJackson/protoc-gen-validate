@@ -37,7 +37,7 @@ gazelle: ## runs gazelle against the codebase to generate Bazel BUILD files
 	bazel run //:gazelle
 
 .PHONY: lint
-lint: bin/golint bin/shadow ## lints the package for common code smells
+lint: bin/golint bin/shadow testcases tests/harness/go/harness.pb.go ## lints the package for common code smells
 	test -z "$(shell gofmt -d -s ./*.go)" || (gofmt -d -s ./*.go && exit 1)
 	# golint -set_exit_status
 	# check for variable shadowing
