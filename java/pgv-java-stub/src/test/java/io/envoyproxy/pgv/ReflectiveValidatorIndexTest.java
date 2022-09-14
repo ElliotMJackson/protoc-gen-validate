@@ -1,6 +1,6 @@
 package io.envoyproxy.pgv;
 
-import io.envoyproxy.pvg.cases.TokenUse;
+import io.envoyproxy.pvg.proto.TokenUse;
 import org.assertj.core.api.AtomicBooleanAssert;
 import org.junit.Test;
 
@@ -12,7 +12,9 @@ import static org.assertj.core.api.Assertions.in;
 public class ReflectiveValidatorIndexTest {
     @Test
     public void indexFindsOuterMessage() throws ValidationException {
-        TokenUse token = TokenUse.newBuilder().setPayload(TokenUse.Payload.newBuilder().setToken(TokenUse.Payload.Token.newBuilder().setValue("FOO"))).build();
+        TokenUse token = TokenUse.newBuilder()
+                .setPayload(TokenUse.Payload.newBuilder().setToken(TokenUse.Payload.Token.newBuilder().setValue("FOO")))
+                .build();
         ReflectiveValidatorIndex index = new ReflectiveValidatorIndex();
         Validator<TokenUse> validator = index.validatorFor(TokenUse.class);
 
@@ -22,7 +24,8 @@ public class ReflectiveValidatorIndexTest {
 
     @Test
     public void indexFindsEmbeddedMessage() throws ValidationException {
-        TokenUse.Payload payload = TokenUse.Payload.newBuilder().setToken(TokenUse.Payload.Token.newBuilder().setValue("FOO")).build();
+        TokenUse.Payload payload = TokenUse.Payload.newBuilder()
+                .setToken(TokenUse.Payload.Token.newBuilder().setValue("FOO")).build();
         ReflectiveValidatorIndex index = new ReflectiveValidatorIndex();
         Validator<TokenUse.Payload> validator = index.validatorFor(TokenUse.Payload.class);
 

@@ -1,17 +1,17 @@
 syntax = "proto3";
 
-package io.envoyproxy.pvg.cases;
+package io.envoyproxy.pvg.proto;
 
 option java_multiple_files = true;
 
 import "validate/validate.proto";
 
 message TokenUse {
-    message Payload {
-        message Token {
-            string value = 1;
-        }
-        Token token = 1;
+  message Payload {
+    message Token {
+      string value = 1;
     }
-    Payload payload = 1;
+    Token token = 1;
+  }
+  Payload payload = 1;
 }

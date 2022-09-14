@@ -8,8 +8,8 @@ import io.envoyproxy.pgv.UnimplementedException;
 import io.envoyproxy.pgv.ValidationException;
 import io.envoyproxy.pgv.ValidatorIndex;
 import tests.harness.Harness;
-import tests.harness.cases.base.*;
-import tests.harness.cases.other_package.EmbedOuterClass;
+import tests.harness.proto.base.*;
+import tests.harness.proto.other_package.EmbedOuterClass;
 import io.envoyproxy.pgv.validate.Validate;
 
 import java.io.IOException;

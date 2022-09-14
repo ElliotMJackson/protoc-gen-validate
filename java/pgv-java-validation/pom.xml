@@ -63,9 +63,9 @@
                             <protoSourceRoot>../../</protoSourceRoot>
                             <includes>
                                 <include>tests/harness/harness.proto</include>
-                                <include>tests/harness/cases/base/*.proto</include>
-                                <include>tests/harness/cases/other_package/*.proto</include>
-                                <include>tests/harness/cases/yet_another_package/*.proto</include>
+                                <include>tests/harness/proto/base/*.proto</include>
+                                <include>tests/harness/proto/other_package/*.proto</include>
+                                <include>tests/harness/proto/yet_another_package/*.proto</include>
                             </includes>
                         </configuration>
                     </execution>
@@ -78,9 +78,9 @@
                             <protoSourceRoot>../../</protoSourceRoot>
                             <pluginParameter>lang=java</pluginParameter>
                             <includes>
-                                <include>tests/harness/cases/base/*.proto</include>
-                                <include>tests/harness/cases/other_package/*.proto</include>
-                                <include>tests/harness/cases/yet_another_package/*.proto</include>
+                                <include>tests/harness/proto/base/*.proto</include>
+                                <include>tests/harness/proto/other_package/*.proto</include>
+                                <include>tests/harness/proto/yet_another_package/*.proto</include>
                             </includes>
                             <pluginId>java-pgv</pluginId>
                             <pluginArtifact>io.envoyproxy.protoc-gen-validate:protoc-gen-validate:${project.version}:exe:${os.detected.classifier}</pluginArtifact>

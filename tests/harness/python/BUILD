@@ -12,7 +12,7 @@ py_binary(
         # and not the one riding on the py_proto_library dependencies
         requirement("protobuf"),
         "//tests/harness:harness_py_proto",
-        "//tests/harness/cases/base:cases_py_proto",
+        "//tests/harness/proto/base:proto_py_proto",
         "//python:validator_py",
     ],
 )

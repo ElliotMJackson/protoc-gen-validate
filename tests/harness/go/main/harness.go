@@ -6,11 +6,11 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/base/go"
-	cases "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/base/go"
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/other_package/go"
-	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/cases/yet_another_package/go"
 	harness "github.com/envoyproxy/protoc-gen-validate/tests/harness/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go"
+	cases "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/base/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/other_package/go"
+	_ "github.com/envoyproxy/protoc-gen-validate/tests/harness/proto/yet_another_package/go"
 	"google.golang.org/protobuf/proto"
 )
 

@@ -4,22 +4,22 @@ import inspect
 from python.protoc_gen_validate.validator import validate, ValidationFailed
 
 from tests.harness.harness_pb2 import TestCase, TestResult
-from tests.harness.cases.base.bool_pb2 import *
-from tests.harness.cases.base.bytes_pb2 import *
-from tests.harness.cases.base.enums_pb2 import *
-from tests.harness.cases.base.enums_pb2 import *
-from tests.harness.cases.base.messages_pb2 import *
-from tests.harness.cases.base.numbers_pb2 import *
-from tests.harness.cases.base.oneofs_pb2 import *
-from tests.harness.cases.base.repeated_pb2 import *
-from tests.harness.cases.base.strings_pb2 import *
-from tests.harness.cases.base.maps_pb2 import *
-from tests.harness.cases.base.wkt_any_pb2 import *
-from tests.harness.cases.base.wkt_duration_pb2 import *
-from tests.harness.cases.base.wkt_nested_pb2 import *
-from tests.harness.cases.base.wkt_wrappers_pb2 import *
-from tests.harness.cases.base.wkt_timestamp_pb2 import *
-from tests.harness.cases.base.kitchen_sink_pb2 import *
+from tests.harness.proto.base.bool_pb2 import *
+from tests.harness.proto.base.bytes_pb2 import *
+from tests.harness.proto.base.enums_pb2 import *
+from tests.harness.proto.base.enums_pb2 import *
+from tests.harness.proto.base.messages_pb2 import *
+from tests.harness.proto.base.numbers_pb2 import *
+from tests.harness.proto.base.oneofs_pb2 import *
+from tests.harness.proto.base.repeated_pb2 import *
+from tests.harness.proto.base.strings_pb2 import *
+from tests.harness.proto.base.maps_pb2 import *
+from tests.harness.proto.base.wkt_any_pb2 import *
+from tests.harness.proto.base.wkt_duration_pb2 import *
+from tests.harness.proto.base.wkt_nested_pb2 import *
+from tests.harness.proto.base.wkt_wrappers_pb2 import *
+from tests.harness.proto.base.wkt_timestamp_pb2 import *
+from tests.harness.proto.base.kitchen_sink_pb2 import *
 
 
 message_classes = {}

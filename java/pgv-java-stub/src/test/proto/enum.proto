@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package io.envoyproxy.pvg.cases;
+package io.envoyproxy.pvg.proto;
 
 enum TestEnum {
-    ZERO = 0;
-    ONE  = 1;
-    TWO  = 2;
+  ZERO = 0;
+  ONE = 1;
+  TWO = 2;
 }
 
 message Outer {
-    string val = 1;
+  string val = 1;
 }
