@@ -2,9 +2,9 @@
 
 # protoc-gen-validate (PGV)
 
-[![License](https://img.shields.io/github/license/envoyproxy/protoc-gen-validate?color=blue)][badges_license]
-[![Release](https://img.shields.io/github/v/release/envoyproxy/protoc-gen-validate?include_prereleases)][badges_release]
-[![Slack](https://img.shields.io/badge/slack-buf-%23e01563)][badges_slack]
+![License](https://img.shields.io/github/license/envoyproxy/protoc-gen-validate?color=blue)
+![Release](https://img.shields.io/github/v/release/envoyproxy/protoc-gen-validate?include_prereleases)
+![Slack](https://img.shields.io/badge/slack-buf-%23e01563)
 
 > The team at @bufbuild are happy to annouce we will begin to maintain PGV! It fills a huge gap in the protobuf ecosystem and deserves careful stewardship.
 >
