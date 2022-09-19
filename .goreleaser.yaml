@@ -45,18 +45,6 @@ release:
   # Default is `keep-existing`.
   mode: replace
 
-  # Header template for the release body.
-  # Defaults to empty.
-  header: |
-    ## What's Changed
-
-  # Footer template for the release body.
-  # Defaults to empty.
-  footer: |
-    ## Thanks!
-
-    Those were the changes on {{ .Tag }}!
-
   # You can change the name of the release.
   # Default is `{{.Tag}}` on OSS and `{{.PrefixedTag}}` on Pro.
   name_template: "{{.Tag}}"
