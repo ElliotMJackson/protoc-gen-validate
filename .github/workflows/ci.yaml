@@ -22,7 +22,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          load: false
+          load: true
+          push: false
           tags: ${{ env.TEST_TAG }}
       - name: Run
         run: |
