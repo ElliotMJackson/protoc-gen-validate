@@ -4,6 +4,7 @@
 name: Maven Package
 
 on:
+  pull_request:
   release:
     types: [created]
 
@@ -38,17 +39,20 @@ jobs:
         run: mvn -B verify
 
       - name: Install gpg secret key
+        if: github.ref == 'refs/heads/main'
         run: |
           echo ${{env.GPG_KEY}} | base64 --decode > signing-key
           gpg --passphrase ${{env.GPG_PASSPHRASE}} --import signing-key
           shred signing-key
 
       - name: Configure Git User
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
 
       - name: Publish to GitHub Packages Apache Maven
+        if: github.ref == 'refs/heads/main'
         run: |
           mvn -B -s ${{ github.workspace }}/.circleci/settings.xml release:prepare release:perform \
           -Darguments=-s ${{ github.workspace }}/.circleci/settings.xml \
