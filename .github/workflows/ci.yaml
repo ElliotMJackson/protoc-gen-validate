@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - "main"
+env:
+  TEST_TAG: protoc-gen-validate:${{ github.sha }}
 
 jobs:
   docker:
@@ -14,11 +16,12 @@ jobs:
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Build
+      - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
-          push: false
-          tags: protoc-gen-validate:${{ github.sha }}
+          context: .
+          load: false
+          tags: ${{ env.TEST_TAG }}
       - name: Run
         run: |
-          docker run --rm protoc-gen-validate:${{ github.sha }} ci
+          docker run --rm ${{ env.TEST_TAG }} ci
