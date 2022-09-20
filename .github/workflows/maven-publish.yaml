@@ -29,8 +29,6 @@ jobs:
         with:
           java-version: "17"
           distribution: "temurin"
-          server-id: sonatype-nexus-snapshots # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }}/.circleci/settings.xml # location for the settings.xml file
 
       - name: Verify with Maven
         working-directory: ${{ github.workspace }}/java
