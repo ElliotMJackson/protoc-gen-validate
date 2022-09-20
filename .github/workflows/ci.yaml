@@ -18,7 +18,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: false
-          tags: protoc-gen-validate
+          tags: protoc-gen-validate:${{ github.sha }}
       - name: Run
         run: |
-          docker run --rm protoc-gen-validate ci
+          docker run --rm protoc-gen-validate:${{ github.sha }} ci
