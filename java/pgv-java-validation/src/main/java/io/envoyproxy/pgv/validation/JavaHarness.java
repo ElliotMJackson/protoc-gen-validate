@@ -1,16 +1,16 @@
-package io.envoyproxy.pgv.validation;
+package build.buf.pgv.validation;
 
 import com.google.common.base.Throwables;
 import com.google.protobuf.ExtensionRegistry;
 import com.google.protobuf.Message;
-import io.envoyproxy.pgv.ReflectiveValidatorIndex;
-import io.envoyproxy.pgv.UnimplementedException;
-import io.envoyproxy.pgv.ValidationException;
-import io.envoyproxy.pgv.ValidatorIndex;
+import build.buf.pgv.ReflectiveValidatorIndex;
+import build.buf.pgv.UnimplementedException;
+import build.buf.pgv.ValidationException;
+import build.buf.pgv.ValidatorIndex;
 import tests.harness.Harness;
 import tests.harness.cases.*;
 import tests.harness.cases.other_package.EmbedOuterClass;
-import io.envoyproxy.pgv.validate.Validate;
+import build.buf.pgv.validate.Validate;
 
 import java.io.IOException;
 import java.util.Arrays;

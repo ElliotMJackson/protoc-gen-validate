@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 import java.sql.Ref;
 import java.util.concurrent.ConcurrentHashMap;

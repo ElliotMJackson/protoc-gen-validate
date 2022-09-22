@@ -1,10 +1,10 @@
-package io.envoyproxy.pgv.grpc;
+package build.buf.pgv.grpc;
 
 import com.google.protobuf.Any;
 import com.google.rpc.BadRequest;
 import com.google.rpc.Code;
 import com.google.rpc.Status;
-import io.envoyproxy.pgv.ValidationException;
+import build.buf.pgv.ValidationException;
 import io.grpc.StatusRuntimeException;
 import io.grpc.protobuf.StatusProto;
 

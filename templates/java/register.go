@@ -466,13 +466,13 @@ func (fns javaFuncs) byteArrayLit(bytes []uint8) string {
 
 func (fns javaFuncs) durLit(dur *durationpb.Duration) string {
 	return fmt.Sprintf(
-		"io.envoyproxy.pgv.TimestampValidation.toDuration(%d,%d)",
+		"build.buf.pgv.TimestampValidation.toDuration(%d,%d)",
 		dur.GetSeconds(), dur.GetNanos())
 }
 
 func (fns javaFuncs) tsLit(ts *timestamppb.Timestamp) string {
 	return fmt.Sprintf(
-		"io.envoyproxy.pgv.TimestampValidation.toTimestamp(%d,%d)",
+		"build.buf.pgv.TimestampValidation.toTimestamp(%d,%d)",
 		ts.GetSeconds(), ts.GetNanos())
 }
 

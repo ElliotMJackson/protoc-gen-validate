@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 import org.junit.Test;
 

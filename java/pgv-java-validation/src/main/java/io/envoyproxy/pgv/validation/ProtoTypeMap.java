@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv.validation;
+package build.buf.pgv.validation;
 
 import com.google.common.base.*;
 import com.google.common.collect.ImmutableMap;

@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 /**
  * {@code Validator} asserts the validity of a protobuf object.
@@ -24,7 +24,7 @@ public interface Validator<T> {
         try {
             assertValid(proto);
             return true;
-        } catch (io.envoyproxy.pgv.ValidationException ex) {
+        } catch (build.buf.pgv.ValidationException ex) {
             return false;
         }
     }

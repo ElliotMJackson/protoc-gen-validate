@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 /**
  * Base class for failed field validations.

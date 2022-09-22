@@ -36,43 +36,43 @@ const bytesTpl = `{{ $f := .Field }}{{ $r := .Rules -}}
 			if ( !{{ accessor . }}.isEmpty() ) {
 {{- end -}}
 {{- if $r.Const }}
-			io.envoyproxy.pgv.ConstantValidation.constant("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Const" }});
+			build.buf.pgv.ConstantValidation.constant("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Const" }});
 {{- end -}}
 {{- if $r.Len }}
-			io.envoyproxy.pgv.BytesValidation.length("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetLen }});
+			build.buf.pgv.BytesValidation.length("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetLen }});
 {{- end -}}
 {{- if $r.MinLen }}
-			io.envoyproxy.pgv.BytesValidation.minLength("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinLen }});
+			build.buf.pgv.BytesValidation.minLength("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinLen }});
 {{- end -}}
 {{- if $r.MaxLen }}
-			io.envoyproxy.pgv.BytesValidation.maxLength("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxLen }});
+			build.buf.pgv.BytesValidation.maxLength("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxLen }});
 {{- end -}}
 {{- if $r.Pattern }}
-			io.envoyproxy.pgv.BytesValidation.pattern("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Pattern" }});
+			build.buf.pgv.BytesValidation.pattern("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Pattern" }});
 {{- end -}}
 {{- if $r.Prefix }}
-			io.envoyproxy.pgv.BytesValidation.prefix("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Prefix" }});
+			build.buf.pgv.BytesValidation.prefix("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Prefix" }});
 {{- end -}}
 {{- if $r.Contains }}
-			io.envoyproxy.pgv.BytesValidation.contains("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Contains" }});
+			build.buf.pgv.BytesValidation.contains("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Contains" }});
 {{- end -}}
 {{- if $r.Suffix }}
-			io.envoyproxy.pgv.BytesValidation.suffix("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Suffix" }});
+			build.buf.pgv.BytesValidation.suffix("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "Suffix" }});
 {{- end -}}
 {{- if $r.GetIp }}
-			io.envoyproxy.pgv.BytesValidation.ip("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.BytesValidation.ip("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 {{- end -}}
 {{- if $r.GetIpv4 }}
-			io.envoyproxy.pgv.BytesValidation.ipv4("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.BytesValidation.ipv4("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 {{- end -}}
 {{- if $r.GetIpv6 }}
-			io.envoyproxy.pgv.BytesValidation.ipv6("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.BytesValidation.ipv6("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 {{- end -}}
 {{- if $r.In }}
-			io.envoyproxy.pgv.CollectiveValidation.in("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "In" }});
+			build.buf.pgv.CollectiveValidation.in("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "In" }});
 {{- end -}}
 {{- if $r.NotIn }}
-			io.envoyproxy.pgv.CollectiveValidation.notIn("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "NotIn" }});
+			build.buf.pgv.CollectiveValidation.notIn("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ constantName . "NotIn" }});
 {{- end -}}
 {{- if $r.GetIgnoreEmpty }}
 			}

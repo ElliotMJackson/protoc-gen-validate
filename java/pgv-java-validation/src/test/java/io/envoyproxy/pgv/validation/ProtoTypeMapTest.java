@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv.validation;
+package build.buf.pgv.validation;
 
 import com.google.protobuf.Any;
 import com.google.protobuf.InvalidProtocolBufferException;

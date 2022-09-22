@@ -12,19 +12,19 @@ const mapTpl = `{{ $f := .Field }}{{ $r := .Rules -}}
 			if ( !{{ accessor . }}.isEmpty() ) {
 {{- end -}}
 {{- if $r.GetMinPairs }}
-			io.envoyproxy.pgv.MapValidation.min("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinPairs }});
+			build.buf.pgv.MapValidation.min("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinPairs }});
 {{- end -}}
 {{- if $r.GetMaxPairs }}
-			io.envoyproxy.pgv.MapValidation.max("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxPairs }});
+			build.buf.pgv.MapValidation.max("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxPairs }});
 {{- end -}}
 {{- if $r.GetNoSparse }}
-			io.envoyproxy.pgv.MapValidation.noSparse("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.MapValidation.noSparse("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 {{- end -}}
 {{ if or (ne (.Elem "" "").Typ "none") (ne (.Key "" "").Typ "none") }}
-			io.envoyproxy.pgv.MapValidation.validateParts({{ accessor . }}.keySet(), key -> {
+			build.buf.pgv.MapValidation.validateParts({{ accessor . }}.keySet(), key -> {
 				{{ render (.Key "key" "Key") }}
 			});
-			io.envoyproxy.pgv.MapValidation.validateParts({{ accessor . }}.values(), value -> {
+			build.buf.pgv.MapValidation.validateParts({{ accessor . }}.values(), value -> {
 				{{ render (.Elem "value" "Value") }}
 			});
 {{- end -}}

@@ -1,7 +1,7 @@
-package io.envoyproxy.pgv.grpc;
+package build.buf.pgv.grpc;
 
-import io.envoyproxy.pgv.ValidationException;
-import io.envoyproxy.pgv.ValidatorIndex;
+import build.buf.pgv.ValidationException;
+import build.buf.pgv.ValidatorIndex;
 import io.grpc.*;
 
 /**

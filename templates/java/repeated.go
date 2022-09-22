@@ -7,15 +7,15 @@ const repeatedTpl = `{{ $f := .Field }}{{ $r := .Rules -}}
 			if ( !{{ accessor . }}.isEmpty() ) {
 {{- end -}}
 {{- if $r.GetMinItems }}
-			io.envoyproxy.pgv.RepeatedValidation.minItems("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinItems }});
+			build.buf.pgv.RepeatedValidation.minItems("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMinItems }});
 {{- end -}}
 {{- if $r.GetMaxItems }}
-			io.envoyproxy.pgv.RepeatedValidation.maxItems("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxItems }});
+			build.buf.pgv.RepeatedValidation.maxItems("{{ $f.FullyQualifiedName }}", {{ accessor . }}, {{ $r.GetMaxItems }});
 {{- end -}}
 {{- if $r.GetUnique }}
-			io.envoyproxy.pgv.RepeatedValidation.unique("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.RepeatedValidation.unique("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 {{- end }}
-			io.envoyproxy.pgv.RepeatedValidation.forEach({{ accessor . }}, item -> {
+			build.buf.pgv.RepeatedValidation.forEach({{ accessor . }}, item -> {
 				{{ render (.Elem "item" "") }}
 			});
 {{- if $r.GetIgnoreEmpty }}

@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 /**
  * {@code ValidatorIndex} defines the entry point for finding {@link Validator} instances for a given type.

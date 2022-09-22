@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 /**
  * {@code ConstantValidation} implements PVG validators for constant values.

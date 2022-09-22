@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package io.envoyproxy.pgv.grpc;
+package build.buf.pgv.grpc;
 
 option java_multiple_files = true;
-option java_package = "io.envoyproxy.pgv.grpc.asubpackage";
+option java_package = "build.buf.pgv.grpc.asubpackage";
 option java_outer_classname = "Ponycopter";
 
 import "validate/validate.proto";

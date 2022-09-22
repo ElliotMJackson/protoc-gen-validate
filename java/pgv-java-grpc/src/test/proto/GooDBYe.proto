@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package io.envoyproxy.pgv.grpc;
+package build.buf.pgv.grpc;
 
 option java_multiple_files = false;
 

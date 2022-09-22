@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 import com.google.protobuf.ByteString;
 import com.google.re2j.Pattern;

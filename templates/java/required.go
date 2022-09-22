@@ -3,9 +3,9 @@ package java
 const requiredTpl = `{{ $f := .Field }}
 	{{- if .Rules.GetRequired }}
 		if ({{ hasAccessor . }}) {
-			io.envoyproxy.pgv.RequiredValidation.required("{{ $f.FullyQualifiedName }}", {{ accessor . }});
+			build.buf.pgv.RequiredValidation.required("{{ $f.FullyQualifiedName }}", {{ accessor . }});
 		} else {
-			io.envoyproxy.pgv.RequiredValidation.required("{{ $f.FullyQualifiedName }}", null);
+			build.buf.pgv.RequiredValidation.required("{{ $f.FullyQualifiedName }}", null);
 		};
 	{{- end -}}
 `

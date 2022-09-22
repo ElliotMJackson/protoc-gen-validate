@@ -1,4 +1,4 @@
-package io.envoyproxy.pgv;
+package build.buf.pgv;
 
 /**
  * {@code UnimplementedException} indicates a PGV validation is unimplemented for Java.
