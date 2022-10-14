@@ -43,7 +43,7 @@ release:
   # - `replace`: replace existing notes
   #
   # Default is `keep-existing`.
-  mode: append
+  mode: keep-existing
 
   # Header template for the release body.
   # Defaults to empty.
