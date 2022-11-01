@@ -26,5 +26,4 @@ jobs:
           RELEASE_BRANCHES: ""
           PRERELEASE_SUFFIX: "SNAPSHOT"
           DEFAULT_BUMP: "patch"
-          DRY_RUN: true
           INITIAL_VERSION: "0.6.13"
