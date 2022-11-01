@@ -23,6 +23,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         PRERELEASE: true
+        RELEASE_BRANCHES: ""
         PRERELEASE_SUFFIX: "SNAPSHOT"
         DEFAULT_BUMP: "patch"
         DRY_RUN: true
