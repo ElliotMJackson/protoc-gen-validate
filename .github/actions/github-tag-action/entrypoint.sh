@@ -157,7 +157,7 @@ if $pre_release
 then
     # already a pre-release available, bump it
     newPreTagFmt="$new+(-$suffix\.[0-9]+)$"
-    exists=git tag --list --merged HEAD --sort=-v:refname | grep -E "$newPreTagFmt" | head -n 1
+    exists="$(git tag --list --merged HEAD --sort=-v:refname | grep -E "$newPreTagFmt" | head -n 1)"
     if [[ $exists != "" ]]
     then
       echo -e "Found parent to ${new} pre-tag ${exists}..."
