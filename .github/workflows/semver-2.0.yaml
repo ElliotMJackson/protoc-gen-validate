@@ -1,0 +1,26 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+        run: npm install -g semver
+      - name: Bump version and push tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          PRERELEASE: true
+          RELEASE_BRANCHES: ""
+          PRERELEASE_SUFFIX: "SNAPSHOT"
+          DEFAULT_BUMP: "minor"
+        run: .github/actions/github-tag-action/entrypoint.sh
