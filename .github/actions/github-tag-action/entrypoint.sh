@@ -161,39 +161,25 @@ then
     if [[ $exists != "" ]]
     then
       echo -e "Found parent to ${new} pre-tag ${exists}..."
-      if $with_v
-        then
-          new=v$(semver -i prerelease "${exists}" --preid "${suffix}")
-        else
-          new=$(semver -i prerelease "${exists}" --preid "${suffix}")
-      fi
+      new=$(semver -i prerelease "${exists}" --preid "${suffix}")
       echo -e "Bumping ${suffix} pre-tag ${exists}. New pre-tag ${new}"
     elif [[ "$pre_tag" =~ $new ]] && [[ "$pre_tag" =~ $suffix ]]
     then
-        if $with_v
-        then
-            new=v$(semver -i prerelease "${pre_tag}" --preid "${suffix}")
-        else
-            new=$(semver -i prerelease "${pre_tag}" --preid "${suffix}")
-        fi
-        echo -e "Bumping ${suffix} pre-tag ${pre_tag}. New pre-tag ${new}"
+      new=$(semver -i prerelease "${pre_tag}" --preid "${suffix}")
+      echo -e "Bumping ${suffix} pre-tag ${pre_tag}. New pre-tag ${new}"
     else
-        if $with_v
-        then
-            new="v$new-$suffix.0"
-        else
-            new="$new-$suffix.0"
-        fi
-        echo -e "Setting ${suffix} pre-tag ${pre_tag} - With pre-tag ${new}"
+      new="$new-$suffix.0"
+      echo -e "Setting ${suffix} pre-tag ${pre_tag} - With pre-tag ${new}"
     fi
     part="pre-$part"
-else
-    if $with_v
-    then
-        new="v$new"
-    fi
-    echo -e "Bumping tag ${tag} - New tag ${new}"
 fi
+
+if $with_v
+then
+    new="v$new"
+fi
+
+echo -e "Bumping tag ${tag} - New tag ${new}"
 
 # as defined in readme if CUSTOM_TAG is used any semver calculations are irrelevant.
 if [ -n "$custom_tag" ]
