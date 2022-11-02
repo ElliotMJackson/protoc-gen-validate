@@ -3,11 +3,20 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      release:
+        type: boolean
+        description: Remove SNAPSHOT?
 
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
+      - if: ${{ github.event.inputs.release == false }}
+        run: |
+          echo "PRERELEASE_SUFFIX=SNAPSHOT" >> $GITHUB_OUTPUT
+          echo "PRERELEASE: true" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
@@ -19,7 +28,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-          PRERELEASE: true
-          PRERELEASE_SUFFIX: "SNAPSHOT"
           DEFAULT_BUMP: "minor"
         run: .github/actions/github-tag-action/entrypoint.sh
