@@ -1,33 +1,28 @@
-name: Bump version
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
-jobs:
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: "0"
+# name: Bump version
+# on:
+# push:
+#   branches:
+#     - main
+# pull_request:
+#   types:
+#     - closed
+#   branches:
+#     - main
+# jobs:
+# build:
+#   runs-on: ubuntu-22.04
+#   steps:
+#     - uses: actions/checkout@v3
+#       with:
+#         ref: ${{ github.event.pull_request.head.sha }}
+#         fetch-depth: "0"
 
-      - name: Bump version and push tag
-        uses: ./.github/actions/github-tag-action
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          PRERELEASE: true
-          RELEASE_BRANCHES: ""
-          PRERELEASE_SUFFIX: "SNAPSHOT"
-<<<<<<< Updated upstream
-          DEFAULT_BUMP: "patch"
-          INITIAL_VERSION: "0.6.13"
-=======
-          DEFAULT_BUMP: "minor"
->>>>>>> Stashed changes
+#     - name: Bump version and push tag
+#       uses: ./.github/actions/github-tag-action
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         WITH_V: true
+#         PRERELEASE: true
+#         RELEASE_BRANCHES: ""
+#         PRERELEASE_SUFFIX: "SNAPSHOT"
+#         DEFAULT_BUMP: "minor"
