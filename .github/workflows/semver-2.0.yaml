@@ -7,7 +7,14 @@ on:
     inputs:
       release:
         type: boolean
-        description: Remove SNAPSHOT?
+        description: Remove SNAPSHOT
+      version:
+        type: choice
+        description: Which version?
+        default: 'minor'
+        options:
+          - minor
+          - patch
 
 jobs:
   build:
@@ -15,6 +22,7 @@ jobs:
     steps:
       - if: ${{ github.event.inputs.release == false }}
         run: echo "PRERELEASE=true" >> $GITHUB_ENV
+      - run: echo "DEFAULT_BUMP=${{github.event.inputs.version}}" >> $GITHUB_ENV
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
@@ -25,7 +33,4 @@ jobs:
       - name: Bump version and push tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DEFAULT_BUMP: "minor"
-          PRERELEASE_SUFFIX: "SNAPSHOT"
         run: .github/actions/github-tag-action/entrypoint.sh
