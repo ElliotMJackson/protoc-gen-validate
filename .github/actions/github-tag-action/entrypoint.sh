@@ -5,7 +5,7 @@ set -o pipefail
 # config
 default_semvar_bump=${DEFAULT_BUMP:-minor}
 with_v=${WITH_V:-false}
-release_branches=${RELEASE_BRANCHES:-master,main}
+release_branches=${RELEASE_BRANCHES:-}
 custom_tag=${CUSTOM_TAG:-}
 source=${SOURCE:-.}
 dryrun=${DRY_RUN:-false}
@@ -46,11 +46,27 @@ then
     set -x
 fi
 
+setOutput() {
+    echo "${1}=${2}" >> "${GITHUB_OUTPUT}"
+}
+
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 pre_release="$prerelease"
 IFS=',' read -ra branch <<< "$release_branches"
-echo "pre_release= $pre_release"
+for b in "${branch[@]}"; do
+    # check if ${current_branch} is in ${release_branches} | exact branch match
+    if [[ "$current_branch" == "$b" ]]
+    then
+        pre_release="false"
+    fi
+    # verify non specific branch names like  .* release/* if wildcard filter then =~
+    if [ "$b" != "${b//[\[\]|.? +*]/}" ] && [[ "$current_branch" =~ $b ]]
+    then
+        pre_release="false"
+    fi
+done
+echo "pre_release = $pre_release"
 
 # fetch tags
 git fetch --tags
@@ -101,8 +117,8 @@ commit=$(git rev-parse HEAD)
 if [ "$tag_commit" == "$commit" ]
 then
     echo "No new commits since previous tag. Skipping..."
-    echo "::set-output name=new_tag::$tag"
-    echo "::set-output name=tag::$tag"
+    setOutput "new_tag" "$tag"
+    setOutput "tag" "$tag"
     exit 0
 fi
 
@@ -116,15 +132,15 @@ case "$log" in
     *$patch_string_token* ) new=$(semver -i patch "$tag"); part="patch";;
     *$none_string_token* ) 
         echo "Default bump was set to none. Skipping..."
-        echo "::set-output name=new_tag::$tag"
-        echo "::set-output name=tag::$tag"
+        setOutput "new_tag" "$tag"
+        setOutput "tag" "$tag"
         exit 0;;
     * ) 
         if [ "$default_semvar_bump" == "none" ]
         then
             echo "Default bump was set to none. Skipping..."
-            echo "::set-output name=new_tag::$tag"
-            echo "::set-output name=tag::$tag"
+            setOutput "new_tag" "$tag"
+            setOutput "tag" "$tag"
             exit 0 
         else 
             new=$(semver -i "${default_semvar_bump}" "$tag")
@@ -170,12 +186,12 @@ then
 fi
 
 # set outputs
-echo "::set-output name=new_tag::$new"
-echo "::set-output name=part::$part"
-echo "::set-output name=tag::$new" # this needs to go in v2 is breaking change
-echo "::set-output name=old_tag::$tag"
+setOutput "new_tag" "$new"
+setOutput "part" "$part"
+setOutput "tag" "$new" # this needs to go in v2 is breaking change
+setOutput "old_tag" "$tag"
 
-# dry run exit without real changes
+# dry run exit without real changes
 if $dryrun
 then
     exit 0
