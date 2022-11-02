@@ -88,6 +88,8 @@ case "$tag_context" in
         exit 1;;
 esac
 
+echo "tag_context=$tag_context"
+
 # if there are none, start tags at INITIAL_VERSION
 if [ -z "$tag" ]
 then
@@ -110,9 +112,11 @@ fi
 
 # get current commit hash for tag
 tag_commit=$(git rev-list -n 1 "$tag")
+echo "tag_commit=$tag_commit"
 
 # get current commit hash
 commit=$(git rev-parse HEAD)
+echo "commit=$commit"
 
 if [ "$tag_commit" == "$commit" ]
 then
@@ -152,7 +156,18 @@ esac
 if $pre_release
 then
     # already a pre-release available, bump it
-    if [[ "$pre_tag" =~ $new ]] && [[ "$pre_tag" =~ $suffix ]]
+    newPreTagFmt="$new+(-$suffix\.[0-9]+)$"
+    exists=git tag --list --merged HEAD --sort=-v:refname | grep -E "$newPreTagFmt" | head -n 1
+    if [[ $exists != "" ]]
+    then
+      if $with_v
+          then
+              new=v$(semver -i prerelease "${exists}" --preid "${suffix}")
+          else
+              new=$(semver -i prerelease "${exists}" --preid "${suffix}")
+          fi
+          echo -e "Bumping ${suffix} pre-tag ${exists}. New pre-tag ${new}"
+    elif [[ "$pre_tag" =~ $new ]] && [[ "$pre_tag" =~ $suffix ]]
     then
         if $with_v
         then
