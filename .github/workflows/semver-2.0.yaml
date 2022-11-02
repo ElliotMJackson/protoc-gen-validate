@@ -16,7 +16,7 @@ jobs:
       - if: ${{ github.event.inputs.release == false }}
         run: |
           echo "PRERELEASE_SUFFIX=SNAPSHOT" >> $GITHUB_OUTPUT
-          echo "PRERELEASE: true" >> $GITHUB_OUTPUT
+          echo "PRERELEASE=true" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
