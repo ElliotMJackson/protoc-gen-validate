@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-        run: npm install -g semver
+      - run: npm install -g semver
       - name: Bump version and push tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
